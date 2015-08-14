@@ -35,5 +35,4 @@ describe(".all") do
     end
   end
 
-
 end

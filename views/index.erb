@@ -1,3 +1,14 @@
-<h1>Create a New Word</h1>
-<a href="/all_words">See Words</a> </br>
-<a href="/new_words/form">Add New Word</a>
+<h1>All Words</h1>
+<h3>Here are your words: </h3>
+<ul>
+  <% @all_words.each() do |word| %>
+  <li><a href="/<%= word.id() %>"> <%= word.word() %> </a></li>
+<% end %>
+
+<h5>Feel free to add a new word:</h5>
+  <form action="/" method="post">
+    <label for="word">Add your word here:</label>
+    <input id="word" name="word" type="text">
+    <button type="submit">Add Word</button>
+  </form>
+</ul>
