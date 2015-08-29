@@ -15,7 +15,7 @@ end
 
 post('/') do
   word = params.fetch("word")
-  Word.new(word).save()
+  Word.new({:word => word}).save()
   @all_words = Word.all()
   erb(:index)
 end
@@ -30,7 +30,7 @@ end
 #   erb(:individual_word)
 # end
 
-get('/words/:id') do
+get('/word/:id') do
   @word = Word.find(params.fetch('id').to_i())
-  erb(:index)
+  erb(:word)
 end
