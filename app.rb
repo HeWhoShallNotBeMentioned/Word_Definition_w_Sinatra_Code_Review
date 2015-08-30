@@ -15,22 +15,22 @@ end
 
 post('/') do
   word = params.fetch("word")
-  Word.new({:word => word}).save()
+  new_word = Word.new({:word => word})
+  new_word.save()
   @all_words = Word.all()
   erb(:index)
 end
 
-# post('/individual_word') do
-#   @word=params.fetch("word")
-#   @definition = params.fetch("definition")
-#   @definition = Definition.new({:definition => @definition})
-#   @definition.save()
-#   @word = Word.find(params.fetch('id').to_i())
-#   @word.add_email(@word)
-#   erb(:individual_word)
-# end
-
 get('/word/:id') do
   @word = Word.find(params.fetch('id').to_i())
+
   erb(:word)
+end
+
+post('/add/definition') do
+  @word = Word.find(params.fetch('id').to_i())
+  new_definition = params.fetch('definition')
+  @word.add_definition(Definition.new(new_definition))
+  @all_words = Word.all()
+  erb(:index)
 end
